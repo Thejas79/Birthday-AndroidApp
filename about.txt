@@ -1,0 +1,152 @@
+What the project contains (files & folders — what they do)
+
+/app/src/main/AndroidManifest.xml
+Declares app package, activities, permissions, broadcast receivers (for alarms/notifications), app theme, intent-filters.
+
+/app/src/main/java/... or /app/src/main/kotlin/...
+Source code. Typical classes:
+
+MainActivity (app entry UI)
+
+Activities or Fragments for Add/Edit Birthday, Details, List
+
+Adapters (e.g., RecyclerView.Adapter) to show lists
+
+Model classes (e.g., Birthday or Person)
+
+Database / repository classes (Room DAOs or SQLite helpers)
+
+Notification/Alarm helpers (AlarmManager, BroadcastReceiver)
+
+/app/src/main/res/
+Resources:
+
+layout/ — XML screens (activity_add.xml, item_birthday.xml, activity_main.xml)
+
+values/ — strings.xml, colors.xml, styles.xml, dimens.xml
+
+drawable/ — icons and images
+
+mipmap/ — app icons
+
+app/build.gradle (module) and build.gradle (project)
+Gradle config: SDK versions, dependencies, build types (debug/release), proguard/R8 rules.
+
+gradle/, .gradle/, gradlew, gradlew.bat
+Gradle wrapper and configuration.
+
+assets/ (optional)
+Static files bundled with app.
+
+README, LICENSE (optional)
+Project documentation and license.
+
+Core features likely implemented
+
+Add / edit / delete birthday entries (name, date, notes, maybe photo)
+
+List of birthdays (sorted by upcoming date)
+
+Local reminders/notifications for birthdays (AlarmManager + BroadcastReceiver + NotificationManager)
+
+Persistent storage (Room or SQLite)
+
+Simple UI using standard Android views or Material Components
+
+How it’s made — architecture & components
+
+UI layer: Activities and/or Fragments with XML layouts. Lists usually use RecyclerView.
+
+Data layer:
+
+Room (recommended) — Entities, DAO, Database class; or
+
+SQLiteOpenHelper — manual SQL if Room not used.
+
+Business layer / Repository: a small class that mediates between UI and DB.
+
+Scheduling/Reminders: AlarmManager sets alarms for reminders; BroadcastReceiver listens and triggers a Notification via NotificationManager.
+
+Persistence of settings: SharedPreferences for small app settings.
+
+Dependency management: Gradle (declares external libraries like Material, Room, lifecycle, Glide/Picasso for images).
+
+App lifecycle & background: Android lifecycle-aware components (ViewModel, LiveData) help keep UI in sync; optional WorkManager for scheduled background tasks.
+
+Tools & environments used (full list)
+
+Essential:
+
+Android Studio (IDE) — project creation, editing, build, run, debug.
+
+Java JDK (8/11/17 depending on project) — required by Gradle/Android plugin.
+
+Android SDK & Build Tools — specific API levels. Check compileSdkVersion / targetSdkVersion in build.gradle.
+
+Gradle (wrapper) — builds the app. Use ./gradlew or Android Studio UI.
+
+Git — version control (you already have repository on GitHub).
+
+Common libraries (may or may not be used in your repo — check build.gradle):
+
+AndroidX libraries (core-ktx, appcompat, recyclerview, constraintlayout)
+
+Material Components (com.google.android.material:material)
+
+Room (androidx.room:room-runtime, room-ktx, room-compiler)
+
+Lifecycle / ViewModel / LiveData (androidx.lifecycle)
+
+Glide or Picasso (image loading)
+
+WorkManager (background tasks)
+
+Kotlin stdlib (if kotlin project)
+
+Device / testing:
+
+Android Emulator (AVD) or Physical Android device (USB debugging enabled)
+
+adb command-line tool (install/uninstall/test APKs)
+
+Release & distribution:
+
+Key store (JKS) to sign release APKs or AABs.
+
+Google Play Console (if you publish) — upload signed AAB (recommended) or APK.
+
+How to confirm exactly what your project uses (quick checklist)
+
+Open these files in the repo:
+
+app/build.gradle (or build.gradle.kts) — shows language (kotlin plugin / java), compileSdk, minSdk, dependencies.
+
+gradle.properties — any options like android.useAndroidX=true.
+
+AndroidManifest.xml — permissions, receivers, activities.
+
+Source folder (/app/src/main/java or /kotlin) — confirms language and classes (Room entities, BroadcastReceivers, etc.).
+
+res/layout/ — check screens and UI components used.
+
+Extra: what to add to make the README/project “complete”
+
+Exact project language and Android plugin / Gradle versions. (Copy from build.gradle.)
+
+Screenshots of app screens in README.
+
+A short architecture diagram or flow: UI → Repository → DB → Alarm → Notification.
+
+CHANGELOG.md and CONTRIBUTING.md.
+
+LICENSE (MIT, Apache, etc.).
+
+Example .env or config notes if external services used.
+
+Automated tests (instrumented/unit tests) if available.
+
+Practical next steps for you (fast)
+
+Open app/build.gradle and tell me the minSdkVersion, compileSdkVersion, and the top 5 dependencies — I’ll update README with exact versions.
+
+If you want, I can update the README with screenshots, exact build commands for your project, and a short architecture diagram. I can also include proguard rules for release builds.
